@@ -8,6 +8,10 @@
             {{ Form::text('title',null,['class'=>'form-control']) }}
         </div>    
         <div class="form-group">
+            {{ Form::label('tags','タグ') }}
+            {{ Form::text('tags',null,['class'=>'form-control']) }}
+        </div>    
+        <div class="form-group">
             {{ Form::label('content','本文') }}
             {{ Form::textarea('content',null,['class'=>'form-control']) }}
         </div>    

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTagIdColumn extends Migration
+class AddIpAddressColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTagIdColumn extends Migration
      */
     public function up()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            //
+        Schema::table('comments', function (Blueprint $table) {
+            $table->ipAddress('ip')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddTagIdColumn extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function (Blueprint $table) {
-            //
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropColumn('ip');
         });
     }
 }

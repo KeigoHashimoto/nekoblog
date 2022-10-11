@@ -24,6 +24,13 @@ ul,li,p,h1,h2,h3,h4,h5,h6{
     margin-top: 2rem;
 }
 
+.pagination{
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+/* header */
+
 .header{
     width: 100%;
 }
@@ -35,14 +42,136 @@ ul,li,p,h1,h2,h3,h4,h5,h6{
 
 .header ul{
     list-style:none;
+    width: 100%;
+    display: flex;
+    column-gap :1px;
 }
 
 .header ul li{
-    display:inline-block;
-    width: 24%;
+    width: 25%;
     text-align: center;
     padding: 5px 0;
     background: var(--main);
     color:#fff ;
     font-weight:bold;
 }
+
+/* index */
+.index{
+    display: flex;
+    justify-content: space-between;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.article-index{
+    width: 65%;
+    margin-top: 2rem;
+}
+
+.sidebar{
+    width: 30%;
+}
+
+.article{
+    padding: 1rem 2rem;
+    background:#F2E9EB;
+    margin: 1rem;
+    display:flex;
+    column-gap:20px;
+    border-radius:5px;
+}
+
+.article-index-title{
+    max-width:450px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.index-img{
+    width: 200px;
+    height: 150px;
+    object-fit:cover;
+    border-radius:5px;
+}
+
+/*show*/
+.show{
+    display: flex;
+    justify-content: space-between;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.article-show{
+    width: 65%;
+    margin: 3rem auto 0;
+    padding: 2rem 1rem;
+}
+
+.article-wrap{
+    border-radius:5px;
+    background: #F2E9EB;
+}
+
+.article-img{
+    width: 60%;
+}
+
+
+/* sidebar */
+
+.banner{
+    width: 80%;
+    margin: 3rem auto 0;
+    display:block;
+}
+
+.new-article-title{
+    text-align: center;
+    background: var(--main);
+    padding:5px;
+    border-radius:5px 5px 0 0;
+}
+
+.new-article{
+    margin: 2rem auto 0;
+    width: 80%;
+    border:1px solid #ccc;
+    border-radius:5px 5px 0 0;
+}
+
+.new-item{
+    display:block;
+    width: 80%;
+    margin: .5rem auto;  
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    border-bottom:1px solid #ccc;
+}
+.tags-title{
+    text-align: center;
+    background: var(--main);
+    padding:5px;
+    border-radius:5px 5px 0 0;
+}
+
+.tags{
+    margin: 2rem auto 0;
+    width: 80%;
+    border:1px solid #ccc;
+    border-radius:5px 5px 0 0;
+}
+
+.tag{
+    display:inline-block;
+    margin:.3rem;
+    background: blue;
+    color:#fff;
+    padding:2px;
+    border-radius:3px;  
+}
+
+

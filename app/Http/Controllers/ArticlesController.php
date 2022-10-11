@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Tag;
+use App\Models\Comment;
 
 class ArticlesController extends Controller
 {
     public function index(){
-        $articles = Article::orderBy('created_at','desc')->get();
+        $articles = Article::orderBy('created_at','desc')->paginate(5);
 
-        return view('home',compact('articles'));
+        $newArticles = Article::orderBy('created_at','desc')->limit(5)->get();
+
+        $tags= Tag::get();
+
+
+        return view('home',compact('articles','newArticles','tags'));
     }
 
     public function create(){
@@ -29,6 +36,23 @@ class ArticlesController extends Controller
         $article->content = $request->content;
         $article->user_id = \Auth::user()->id;
 
+
+        // タグ
+        preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶー一-龠]+)/u',$request->tags,$match);
+
+
+        $tags=[];
+        foreach($match[1] as $tag){
+            $record = Tag::firstOrCreate(['tags'=>$tag]);
+            array_push($tags,$record);
+        }
+
+        $tags_id=[];
+        foreach($tags as $tag){
+            array_push($tags_id,$tag['id']);
+        }
+        
+        // 画像保存
         if($file = $request->image){
             $fileName = date('Ymd') . $file->getClientOriginalName();
             $path = public_path('upload/');
@@ -40,12 +64,20 @@ class ArticlesController extends Controller
         $article->image = $fileName;
         $article->save();
 
+        $article->tags()->attach($tags_id);
+
         return redirect('/');
     }
 
     public function show($id){
         $article = Article::findOrfail($id);
 
-        return view('articles.show',compact('article'));
+        $newArticles = Article::orderBy('created_at','desc')->limit(5)->get();
+
+        $tags= Tag::limit(20)->get();
+
+        $comments = Comment::where('article_id','=',$article->id)->orderBy('created_at','desc')->get();
+
+        return view('articles.show',compact('article','comments','newArticles','tags'));
     }
 }

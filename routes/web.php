@@ -24,6 +24,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\ArticlesController::class, 'index'])->name('articles.index');
 Route::get('/show/{id}', [App\Http\Controllers\ArticlesController::class, 'show'])->name('article.show');
 
+Route::post('/store/{id}',[App\Http\Controllers\CommentsController::class,'store'])->name('comment.post');
+
 Route::group(['middleware'=>['auth']],function(){
     Route::get('/create',[App\Http\Controllers\ArticlesController::class,'create'])->name('article.create');
     Route::post('/create/post',[App\Http\Controllers\ArticlesController::class,'store'])->name('article.post');
