@@ -6,14 +6,14 @@
     <div class="new-article">
         <h2 class="new-article-title">最新記事</h2>
         @foreach($newArticles as $newArticle)
-            {!! link_to_route('article.show',$article->created_at->format('y/m/d').' | '.$newArticle->title,[$newArticle->id],['class'=>'new-item']) !!}
+            {!! link_to_route('article.show',$newArticle->created_at->format('y/m/d').' | '.$newArticle->title,[$newArticle->id],['class'=>'new-item']) !!}
         @endforeach
     </div>
 
     <div class="tags">
         <h2 class="tags-title">タグ</h2>
         @foreach($tags as $tag)
-            <p class="tag">{{ $tag->tags }}</p>
+            <p class="tag">{{ link_to_route('articles.sarch', $tag->tags ,[$tag->id]) }}</p>
         @endforeach
     </div>
 </div>

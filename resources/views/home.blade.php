@@ -1,22 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="hands">
+        <div id="hand1" class="hand1"><img class="hand-img" src="{{ asset('image/bear_hand.png') }}"></div>
+    </div>
     <div class="index">
-        <div class="article-index">
-            @foreach($articles as $article)
-                <div class="article">
-                    <a href="{{ route('article.show',$article->id) }}"><img class="index-img" src="{{ asset('upload/'.$article->image) }}" alt=""></a>
-                    <div>
-                        <p>{{ $article->created_at }}</p>
-                        <h3 class="article-index-title">{!! link_to_route('article.show',$article->title,[$article->id]) !!}</h3>
-                        <p class = "article-index-title">{{ $article->content }}</p>
-                    </div>
-                </div>
-            @endforeach
-            {{ $articles->links() }}
-        </div>
+        @include('articles.index')
     
         @include('commons.sidebar')
     </div>
+
+    <script>
+        const trigerbtn = document.getElementById('title');
+        const hand1 = document.getElementById('hand1');
+        const className1 = "hand-animation1"
+
+        trigerbtn.addEventListener('click',(e)=>{
+            e.preventDefault();
+            const linkUrl = trigerbtn.getAttribute('href');
+            hand1.classList.add(className1);
+
+            setTimeout(() => {
+                location.href=linkUrl;
+            }, 800);
+        });
+    </script>
     
 @endsection

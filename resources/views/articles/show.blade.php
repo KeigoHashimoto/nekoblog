@@ -33,7 +33,7 @@
 
         {{-- コメント欄 --}}
         <div class="comments">
-            <h5>コメント</h5>
+            <h5>コメント({{ $article->comments_count }})</h5>
             @foreach($comments as $comment)
             <div class="comment-index">
                 <div class="flex">

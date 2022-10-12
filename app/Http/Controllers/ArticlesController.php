@@ -72,6 +72,8 @@ class ArticlesController extends Controller
     public function show($id){
         $article = Article::findOrfail($id);
 
+        $article->loadCommentsCount();
+
         $newArticles = Article::orderBy('created_at','desc')->limit(5)->get();
 
         $tags= Tag::limit(20)->get();
@@ -79,5 +81,58 @@ class ArticlesController extends Controller
         $comments = Comment::where('article_id','=',$article->id)->orderBy('created_at','desc')->get();
 
         return view('articles.show',compact('article','comments','newArticles','tags'));
+    }
+
+    public function destroy($id){
+        $article = Article::findOrFail($id); 
+        $article->delete();
+        
+        return back();
+    }
+
+    public function edit($id,Request $request){
+        $article=Article::findOrFail($id);
+
+        return view('articles.edit',compact('article'));
+    }
+
+    public function update($id,Request $request){
+        $request->validate([
+            'title'=>'required|string|max:255',
+            'content'=>'required|string|max:2000',
+            'image'=>'image|file',
+        ]);
+
+        $article=Article::findOrFail($id);
+        $article->title = $request->title;
+        $article->content = $request->content;
+        $article->user_id = \Auth::user()->id;
+        
+        // 画像保存
+        if($file = $request->image){
+            $fileName = date('Ymd') . $file->getClientOriginalName();
+            $path = public_path('upload/');
+            $file->move($path,$fileName);
+        }else{
+            $fileName=$article->image;
+        }
+
+        $article->image = $fileName;
+        $article->save();
+
+        return redirect('/');
+    }
+
+    public function tagSarch($tagId){
+        $tag = Tag::findOrFail($tagId);
+
+        $articles = $tag->articles()->paginate(10);
+
+        $newArticles = Article::orderBy('created_at','desc')->limit(5)->get();
+
+        $tags= Tag::get();
+
+
+        return view('articles.tagSarch',compact('articles','newArticles','tags'));
     }
 }

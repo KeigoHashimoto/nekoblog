@@ -31,4 +31,8 @@ class Article extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function loadCommentsCount(){
+        $this->loadcount('comments');
+    }
 }

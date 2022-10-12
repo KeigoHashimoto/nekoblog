@@ -8,6 +8,12 @@ use App\Models\Comment;
 
 class CommentsController extends Controller
 {
+    public function create($id){
+        $article = Article::findOrFail($id);
+
+        return view('comments.create',compact('article'));
+    }
+
     public function store(Request $request,$id){
         $request->validate([
             'name'=>'required|string|max:255',
@@ -22,6 +28,13 @@ class CommentsController extends Controller
         $comment->article_id = $article->id;
         $comment->ip = $request->ip();
         $comment->save();
+
+        return redirect('/show/'.$article->id);
+    }
+
+    public function destroy($id){
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
 
         return back();
     }
