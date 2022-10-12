@@ -3,15 +3,11 @@
 @section('content')
 <div class="form">
     <div class="article-create">
-        {{ Form::open(['route'=>'article.post','enctype'=>'multipart/form-data']) }}
+        {{ Form::model($article,['route'=>['article.update',$article->id],'enctype'=>'multipart/form-data','method'=>'put']) }}
         <div class="form-group">
             {{ Form::label('title','タイトル') }}
             {{ Form::text('title',null,['class'=>'form-control']) }}
-        </div>    
-        <div class="form-group">
-            {{ Form::label('tags','タグ') }}
-            {{ Form::text('tags',null,['class'=>'form-control']) }}
-        </div>    
+        </div>       
         <div class="form-group">
             {{ Form::label('content','本文') }}
             {{ Form::textarea('content',null,['class'=>'form-control']) }}
