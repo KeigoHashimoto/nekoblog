@@ -339,6 +339,8 @@ ul,li,p,h1,h2,h3,h4,h5,h6{
     top: 0;
     right:calc(50% - 200px);
     transform:translateY(-100%);
+    visibility:hidden;
+
 }
 
 .hand2{
@@ -348,11 +350,36 @@ ul,li,p,h1,h2,h3,h4,h5,h6{
     top: 0;
     right:0;
     transform:translateX(100%);
+    visibility:hidden;
+
 }
 
+.hand3{
+    height: 400px;
+    width: 400px;
+    position:fixed;
+    top: 0;
+    left:0;
+    transform:translateX(-100%);
+    visibility:hidden;
+
+}
+
+.tail1{
+    height: 800px;
+    width: 800px;
+    position:fixed;
+    bottom: -55%;
+    left:10%;
+    transform:translateX(-100%);
+    visibility:hidden;
+}
+
+
 .hand-animation{
+    visibility:visible;
     transform:translate(0%);
-    transition:transform .3s ease; 
+    transition:all .3s ease; 
 }
 
 .hand-img{
