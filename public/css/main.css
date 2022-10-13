@@ -167,7 +167,9 @@ ul,li,p,h1,h2,h3,h4,h5,h6{
 }
 
 .article-img{
-    width: 60%;
+    width: 40%;
+    display: block;
+    margin: 2rem auto;
 }
 
 .comments{
@@ -331,16 +333,25 @@ ul,li,p,h1,h2,h3,h4,h5,h6{
 
 /* hands */
 .hand1{
-    height: 500px;
-    width: 500px;
+    height: 400px;
+    width: 400px;
     position:fixed;
     top: 0;
-    right:calc(50% - 250px);
+    right:calc(50% - 200px);
     transform:translateY(-100%);
 }
 
-.hand-animation1{
-    transform:translateY(0%);
+.hand2{
+    height: 400px;
+    width: 400px;
+    position:fixed;
+    top: 0;
+    right:0;
+    transform:translateX(100%);
+}
+
+.hand-animation{
+    transform:translate(0%);
     transition:transform .3s ease; 
 }
 

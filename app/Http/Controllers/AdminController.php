@@ -8,6 +8,7 @@ use App\Models\Comment;
 
 class AdminController extends Controller
 {
+
     public function index(){
         $articles = Article::orderBy('created_at','desc')->paginate(10);
 
