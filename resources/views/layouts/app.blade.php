@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="discription" content="猫の情報をお届け！">
+    <meta name="discription" content="猫にまつわる情報をお届け！">
 
     <title>ねこぶろぐ</title>
 
